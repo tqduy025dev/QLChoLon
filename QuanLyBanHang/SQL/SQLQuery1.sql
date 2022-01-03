@@ -455,6 +455,16 @@ begin
 end
 go
 
+-- Hiem thi thong tin Client
+create proc USP_ListClient
+as
+begin
+	select phoneNumber as N'Phone Number', clientName as N'Client Name', address as N'Address', accumulated as N'Accumulated'
+	from Client
+end
+go
+
+
 -- Thêm nhân viên
 create proc USP_InsertStaff
 @staffName nvarchar(100), @dateOfBirth Date, @address nvarchar(100), @phoneNumber nvarchar(100), @gender bit
@@ -517,7 +527,9 @@ begin
 	select CAST(dayPay AS DATE) as Ngay, sum(moneyPay) AS tien
 	from UV_SumMoney
 	where MONTH(dayPay) = @dayPay
-	group by CAST(dayPay AS DATE) ORDER by CAST(dayPay AS DATE)
+	group by CAST(dayPay AS DATE) 
+	having year(CAST(dayPay AS DATE)) = year(getdate())
+	ORDER by CAST(dayPay AS DATE)
 end
 go
 
@@ -564,6 +576,7 @@ begin
 end
 go
 
+
 create proc USP_ListBillInfo 
 @idBill int
 as
@@ -578,3 +591,14 @@ go
 
 
 
+select count( billDate) as HDtimene from bill where billDate BETWEEN  '2021-12-18' and '2021-12-24' 
+select * from bill where billDate BETWEEN  '2021-12-23' and '2021-12-24'
+
+select sum(BillInfo.amount) from Bill, BillInfo Where Bill.billId = BillInfo.billId and billDate BETWEEN '2021-12-23' and '2021-12-24'
+
+select CAST(dayPay AS DATE) as Ngay, sum(moneyPay) AS tien
+	from UV_SumMoney
+	where MONTH(dayPay) = 12
+	group by CAST(dayPay AS DATE) 
+	HAVING   year(CAST(dayPay AS DATE)) >= year(getdate())
+	ORDER by CAST(dayPay AS DATE)

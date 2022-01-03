@@ -76,55 +76,68 @@ namespace QuanLyBanHang
             }
             else
             {
-                int staffId = (int)Convert.ToInt32(txtStaffId.Text);
-                string userName = txtUserName.Text;
-                string passWord = txtPassWord.Text;
-                int accountType = 0;
-                if (rdoManage.Checked == true)
-                {
-                    accountType = 0;
-                }
-                else if(rdoSalesman.Checked ==  true)
-                {
-                    accountType = 1;
-                }
-                else if (rdoAccountant.Checked == true)
-                {
-                    accountType = 2;
-                }
-                else if (radoStocker.Checked == true)
-                {
-                    accountType = 3;
-                }
 
-                // Kiểm tra nhập
-                if (txtStaffId.Text.Trim().Length < 1)
+                try
                 {
-                    MessageBox.Show("Vui lòng nhập Mã nhân viên !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    int staffId = (int)Convert.ToInt32(txtStaffId.Text);
+                    string userName = txtUserName.Text;
+                    string passWord = txtPassWord.Text;
+                    int accountType = 0;
+
+
+
+
+                    if (rdoManage.Checked == true)
+                    {
+                        accountType = 0;
+                    }
+                    else if (rdoSalesman.Checked == true)
+                    {
+                        accountType = 1;
+                    }
+                    else if (rdoAccountant.Checked == true)
+                    {
+                        accountType = 2;
+                    }
+                    else if (radoStocker.Checked == true)
+                    {
+                        accountType = 3;
+                    }
+
+                    // Kiểm tra nhập
+                    if (txtStaffId.Text.Trim().Length < 1)
+                    {
+                        MessageBox.Show("Vui lòng nhập Mã nhân viên !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (AccountDAO.Instance.CheckByStaffId(Convert.ToInt32(txtStaffId.Text)))
+                    {
+                        MessageBox.Show("Nhân viên này đã có tài khoản!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (txtUserName.Text.Trim().Length < 1)
+                    {
+                        MessageBox.Show("Vui lòng nhập tên tài khoản !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (AccountDAO.Instance.GetListAccountByName(txtUserName.Text).Rows.Count > 0)
+                    {
+                        MessageBox.Show("Tên tài khoản đã tồn tại !", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (txtPassWord.Text.Trim().Length < 1)
+                    {
+                        MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (txtPassWord.Text != txtReconfirmPW.Text)
+                    {
+                        MessageBox.Show("Mật khẩu không trùng khớp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        InsertAccount(staffId, userName, passWord, accountType);
+                    }
+
                 }
-                else if (AccountDAO.Instance.CheckByStaffId(Convert.ToInt32(txtStaffId.Text)))
+                catch (Exception)
                 {
-                    MessageBox.Show("Nhân viên này đã có tài khoản!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (txtUserName.Text.Trim().Length < 1)
-                {
-                    MessageBox.Show("Vui lòng nhập tên tài khoản !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (AccountDAO.Instance.GetListAccountByName(txtUserName.Text).Rows.Count > 0)
-                {
-                    MessageBox.Show("Tên tài khoản đã tồn tại !", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (txtPassWord.Text.Trim().Length < 1)
-                {
-                    MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (txtPassWord.Text != txtReconfirmPW.Text)
-                {
-                    MessageBox.Show("Mật khẩu không trùng khớp!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    InsertAccount(staffId, userName, passWord, accountType);
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin!","Thông báo!", MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 }
             }
         }

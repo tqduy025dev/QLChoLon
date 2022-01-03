@@ -1,12 +1,7 @@
 ﻿using QuanLyBanHang.DAO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using QuanLyBanHang.DTO;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -14,15 +9,35 @@ namespace QuanLyBanHang
 {
     public partial class UserStatistical : UserControl
     {
+        public static String dateFrom;
+        public static String dateTo;
+
+
         public UserStatistical()
         {
             InitializeComponent();
             LoadStatisticals();
+            Fill_CmbMonth();
             chartAlmostProduct.Hide();
             chartProduct.Hide();
             chartMoney.Show();
             LoadChartMoney();
+            
+
         }
+
+        private void Fill_CmbMonth()
+        {
+            CmbMonth.Text = DateTime.Now.Month.ToString();
+            for (int i = 1; i <= 12; i++)
+                {
+                    CmbMonth.Items.Add(i);
+                }
+            
+        }
+
+        
+
         void LoadStatisticals()
         {
             //-----------------------------------Bill-----------------------------------//
@@ -37,7 +52,7 @@ namespace QuanLyBanHang
             }
 
             //-----------------------------------Product-----------------------------------//
-            lbSumProductMonth.Text = BillDAO.Instance.SumPayProductMonth().ToString();
+            lbSumProduct.Text = BillDAO.Instance.SumPayProductMonth().ToString();
             if (BillDAO.Instance.SumPayProductDay() > 0)
             {
                 lbSumProductToday.Text = "Today: " + BillDAO.Instance.SumPayProductDay().ToString();
@@ -48,7 +63,7 @@ namespace QuanLyBanHang
             }
 
             //-----------------------------------Money-----------------------------------//
-            lbMoneyMonth.Text = BillDAO.Instance.SumMoneyMonth().ToString("###,###");
+            lbSumMoney.Text = BillDAO.Instance.SumMoneyMonth().ToString("###,###");
             if (BillDAO.Instance.SumMoneyDay() > 0)
             {
                 lbMoneyDay.Text = "Today: " + BillDAO.Instance.SumMoneyDay().ToString("###,###");
@@ -62,6 +77,9 @@ namespace QuanLyBanHang
             lbTotalProduct.Text = ProductsDAO.Instance.SumProduct().ToString();
             lbProductType.Text = ProductTypeDAO.Instance.SumProductType().ToString();
             lbStaff.Text = StaffDAO.Instance.SumStaff().ToString();
+
+            dateFrom = dateTimeFrom.Value.ToString("yyyy-MM-dd");
+            dateTo = dateTimeTo.Value.ToString("yyyy-MM-dd");
         }
 
         void LoadChartMoney()
@@ -70,7 +88,18 @@ namespace QuanLyBanHang
 
             chartMoney.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM";
 
-            chartMoney.DataSource = BillDAO.Instance.SumPayMoneyByDay();
+            chartProduct.Enabled = false;
+            chartMoney.Enabled = true;
+
+            if (BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString())).Rows.Count < 1)
+            {
+                MessageBox.Show("Không có dữ liệu cho tháng " + CmbMonth.Text.ToString(), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CmbMonth.Text = DateTime.Now.Month.ToString();
+            }
+            else
+            {
+                chartMoney.DataSource = BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString()));
+            }
 
             //set the member of the chart data source used to data bind to the X-values of the series  
             chartMoney.Series["Series1"].XValueMember = "Ngay";
@@ -84,8 +113,19 @@ namespace QuanLyBanHang
             chartProduct.Series["Series1"].YValueType = ChartValueType.Int32;
             chartProduct.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM";
 
-            chartProduct.DataSource = BillDAO.Instance.TotalPayProductByDay();
+            chartProduct.Enabled = true;
+            chartMoney.Enabled = false;
 
+            if (BillDAO.Instance.TotalPayProductByDay(int.Parse(CmbMonth.Text.ToString())).Rows.Count < 1)
+            {
+                MessageBox.Show("Không có dữ liệu cho tháng " + CmbMonth.Text.ToString(), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CmbMonth.Text = DateTime.Now.Month.ToString();
+            }
+            else
+            {
+                chartProduct.DataSource = BillDAO.Instance.TotalPayProductByDay(int.Parse(CmbMonth.Text.ToString()));
+            }
+            
             //set the member of the chart data source used to data bind to the X-values of the series  
             chartProduct.Series["Series1"].XValueMember = "Ngay";
             //set the member columns of the chart data source used to data bind to the X-values of the series  
@@ -103,7 +143,7 @@ namespace QuanLyBanHang
             chartAlmostProduct.Series["Series1"].IsValueShownAsLabel = true;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnCharMoney_Click(object sender, EventArgs e)
         {
             chartMoney.Show();
             chartProduct.Hide();
@@ -128,5 +168,75 @@ namespace QuanLyBanHang
             LoadchartAlmostProduct();
         }
 
+        private void dateTimeFrom_ValueChanged(object sender, EventArgs e)
+        {
+            string dateNow = DateTime.UtcNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+            if(DateTime.Now.CompareTo(dateTimeFrom.Value) < 0)
+            {
+                MessageBox.Show("Ngày không được quá ngày hiện tại!","Thông báo" ,MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dateTimeFrom.Value = DateTime.Now;
+                return;
+            }
+            dateFrom = dateTimeFrom.Value.ToString("yyyy-MM-dd");
+        }
+
+        private void dateTimeTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (DateTime.Now.CompareTo(dateTimeTo.Value) < 0)
+            {
+                MessageBox.Show("Ngày không được quá ngày hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dateTimeTo.Value = DateTime.Now;
+                return;
+            }
+            dateTo = dateTimeTo.Value.ToString("yyyy-MM-dd");
+        }
+
+        //Thong ke tong cac loai theo ngay from - to
+        private void btnSearchTime_Click(object sender, EventArgs e)
+        {
+            //-----------------------------------Bill-----------------------------------//
+            lbSumBill.Text = BillDAO.Instance.StatisticalBillFromTo(dateFrom,dateTo).ToString();
+
+            //-----------------------------------Product-----------------------------------//
+            lbSumProduct.Text = BillDAO.Instance.StatisticalProductFromTo(dateFrom, dateTo).ToString();
+
+            //-----------------------------------Money-----------------------------------//
+
+            double t = BillDAO.Instance.StatisticalMoneyFromTo(dateFrom, dateTo);
+            // setText lbSumMoney.Text = "0" vì toString("###,###") khong hien gia tri
+            if (t == 0) 
+            {
+                lbSumMoney.Text = "0";
+            }
+            else
+            {
+                lbSumMoney.Text = t.ToString("###,###");
+            }
+            
+
+        }
+
+
+        private void CmbMonth_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (chartMoney.Enabled)
+            {
+                LoadChartMoney();
+            }
+            else
+            {
+                LoadChartProduct();
+            }
+
+        }
+
+        private void btnDefautMonth_Click(object sender, EventArgs e)
+        {
+            lbSumBill.Text = BillDAO.Instance.SumBillMonth().ToString();
+            lbSumProduct.Text = BillDAO.Instance.SumPayProductMonth().ToString();
+            lbSumMoney.Text = BillDAO.Instance.SumMoneyMonth().ToString("###,###");
+            CmbMonth.Text = DateTime.Now.Month.ToString();
+        }
     }
 }

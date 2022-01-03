@@ -59,16 +59,17 @@ namespace QuanLyBanHang
             this.pnLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnLogin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pnLogin.Location = new System.Drawing.Point(0, 0);
+            this.pnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnLogin.Name = "pnLogin";
             this.pnLogin.ShadowDecoration.Parent = this.pnLogin;
-            this.pnLogin.Size = new System.Drawing.Size(268, 330);
+            this.pnLogin.Size = new System.Drawing.Size(357, 406);
             this.pnLogin.TabIndex = 1;
             // 
             // btnExit
             // 
             this.btnExit.AutoRoundedCorners = true;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
-            this.btnExit.BorderRadius = 13;
+            this.btnExit.BorderRadius = 16;
             this.btnExit.CheckedState.Parent = this.btnExit;
             this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExit.CustomImages.Parent = this.btnExit;
@@ -77,10 +78,11 @@ namespace QuanLyBanHang
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.HoverState.Parent = this.btnExit;
             this.btnExit.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnExit.Location = new System.Drawing.Point(152, 226);
+            this.btnExit.Location = new System.Drawing.Point(203, 278);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExit.Name = "btnExit";
             this.btnExit.ShadowDecoration.Parent = this.btnExit;
-            this.btnExit.Size = new System.Drawing.Size(94, 28);
+            this.btnExit.Size = new System.Drawing.Size(125, 34);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseTransparentBackground = true;
@@ -90,10 +92,11 @@ namespace QuanLyBanHang
             // 
             this.guna2PictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox2.Image")));
-            this.guna2PictureBox2.Location = new System.Drawing.Point(24, 153);
+            this.guna2PictureBox2.Location = new System.Drawing.Point(32, 188);
+            this.guna2PictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2PictureBox2.Name = "guna2PictureBox2";
             this.guna2PictureBox2.ShadowDecoration.Parent = this.guna2PictureBox2;
-            this.guna2PictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.guna2PictureBox2.Size = new System.Drawing.Size(40, 37);
             this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox2.TabIndex = 6;
             this.guna2PictureBox2.TabStop = false;
@@ -102,10 +105,11 @@ namespace QuanLyBanHang
             // 
             this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.Location = new System.Drawing.Point(24, 99);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(32, 122);
+            this.guna2PictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.ShadowDecoration.Parent = this.guna2PictureBox1;
-            this.guna2PictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(40, 37);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 5;
             this.guna2PictureBox1.TabStop = false;
@@ -115,7 +119,7 @@ namespace QuanLyBanHang
             // 
             this.btnLogin.AutoRoundedCorners = true;
             this.btnLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogin.BorderRadius = 13;
+            this.btnLogin.BorderRadius = 16;
             this.btnLogin.CheckedState.Parent = this.btnLogin;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.CustomImages.Parent = this.btnLogin;
@@ -124,10 +128,11 @@ namespace QuanLyBanHang
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.HoverState.Parent = this.btnLogin;
             this.btnLogin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnLogin.Location = new System.Drawing.Point(24, 226);
+            this.btnLogin.Location = new System.Drawing.Point(32, 278);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.ShadowDecoration.Parent = this.btnLogin;
-            this.btnLogin.Size = new System.Drawing.Size(94, 28);
+            this.btnLogin.Size = new System.Drawing.Size(125, 34);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseTransparentBackground = true;
@@ -153,13 +158,14 @@ namespace QuanLyBanHang
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
             this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPassword.HoverState.Parent = this.txtPassword;
-            this.txtPassword.Location = new System.Drawing.Point(67, 158);
+            this.txtPassword.Location = new System.Drawing.Point(89, 194);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '\0';
             this.txtPassword.PlaceholderText = "";
             this.txtPassword.SelectedText = "";
             this.txtPassword.ShadowDecoration.Parent = this.txtPassword;
-            this.txtPassword.Size = new System.Drawing.Size(179, 25);
+            this.txtPassword.Size = new System.Drawing.Size(239, 31);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
@@ -185,14 +191,15 @@ namespace QuanLyBanHang
             this.txtUseName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
             this.txtUseName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtUseName.HoverState.Parent = this.txtUseName;
-            this.txtUseName.Location = new System.Drawing.Point(67, 102);
+            this.txtUseName.Location = new System.Drawing.Point(89, 126);
+            this.txtUseName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUseName.Name = "txtUseName";
             this.txtUseName.PasswordChar = '\0';
             this.txtUseName.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(39)))), ((int)(((byte)(40)))));
             this.txtUseName.PlaceholderText = "";
             this.txtUseName.SelectedText = "";
             this.txtUseName.ShadowDecoration.Parent = this.txtUseName;
-            this.txtUseName.Size = new System.Drawing.Size(179, 27);
+            this.txtUseName.Size = new System.Drawing.Size(239, 33);
             this.txtUseName.TabIndex = 1;
             this.txtUseName.Click += new System.EventHandler(this.txtUseName_Click);
             // 
@@ -202,21 +209,23 @@ namespace QuanLyBanHang
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(8)))), ((int)(((byte)(55)))));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(24, 25);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(32, 31);
+            this.guna2HtmlLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(113, 29);
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(151, 36);
             this.guna2HtmlLabel1.TabIndex = 0;
             this.guna2HtmlLabel1.Text = "LOGIN";
             // 
             // fLogin
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 330);
+            this.ClientSize = new System.Drawing.Size(357, 406);
             this.Controls.Add(this.pnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "fLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

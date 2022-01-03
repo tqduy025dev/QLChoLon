@@ -223,7 +223,7 @@ namespace QuanLyBanHang.BUS
             offset = offset + (int)fontHeight + 10;
 
             graphic.DrawString("Thành tiền ".PadRight(30) + totalprice.ToString("###,###"), new Font("Courier New", 12, FontStyle.Bold), new SolidBrush(Color.Red), startX, startY + offset);
-
+            offset = offset + 20;
             graphic.DrawString(lbLoichao, font, new SolidBrush(Color.Black), startX, startY + offset);
             offset = offset + 15;
 

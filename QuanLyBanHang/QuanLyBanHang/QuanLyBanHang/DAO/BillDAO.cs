@@ -58,7 +58,7 @@ namespace QuanLyBanHang.DAO
         {
             try
             {
-                return (int)DataProvider.Instance.ExecuteScalar("SELECT count( MONTH(billDate)) as HDtimene from Bill where MONTH(billDate) = '" + DateTime.Now.ToString("MM") + "'  ");
+                return (int)DataProvider.Instance.ExecuteScalar("SELECT count( MONTH(billDate)) as HDtimene from Bill where MONTH(billDate) = '" + DateTime.Now.ToString("MM") + "' and year(billDate) = '" + DateTime.Now.ToString("yyyy") + "' ");
             }
             catch
             {
@@ -80,7 +80,7 @@ namespace QuanLyBanHang.DAO
         {
             try
             {
-                return (int)DataProvider.Instance.ExecuteScalar("select sum(BillInfo.amount) from Bill, BillInfo Where Bill.billId = BillInfo.billId and MONTH(billDate) = '" + DateTime.Now.ToString("MM") + "'  ");
+                return (int)DataProvider.Instance.ExecuteScalar("select sum(BillInfo.amount) from Bill, BillInfo Where Bill.billId = BillInfo.billId and MONTH(billDate) = '" + DateTime.Now.ToString("MM") + "' and year(billDate) = '" + DateTime.Now.ToString("yyyy") + "' ");
             }
             catch
             {
@@ -102,7 +102,7 @@ namespace QuanLyBanHang.DAO
         {
             try
             {
-                return (double)DataProvider.Instance.ExecuteScalar("select sum(moneyPay) from UV_SumMoney where MONTH(dayPay) = '"+DateTime.Now.ToString("MM") + "' ");
+                return (double)DataProvider.Instance.ExecuteScalar("select sum(moneyPay) from UV_SumMoney where MONTH(dayPay) = '"+DateTime.Now.ToString("MM") + "' and year(dayPay) = '" + DateTime.Now.ToString("yyyy") + "' ");
             }
             catch
             {
@@ -120,15 +120,13 @@ namespace QuanLyBanHang.DAO
                 return 0;
             }
         }
-        public DataTable SumPayMoneyByDay()
+        public DataTable SumPayMoneyByDay(int mouth)
         {
-            string CurrentMonth = DateTime.Now.ToString("MM");
-            return DataProvider.Instance.ExecuteQuery("USP_SumMoneyInDay @dayPa", new object[] { CurrentMonth });
+            return DataProvider.Instance.ExecuteQuery("USP_SumMoneyInDay @dayPa", new object[] { mouth });
         }
-        public DataTable TotalPayProductByDay()
+        public DataTable TotalPayProductByDay(int mouth)
         {
-            string CurrentMonth = DateTime.Now.ToString("MM");
-            return DataProvider.Instance.ExecuteQuery("SELECT CAST(Bill.billDate AS DATE) AS Ngay, sum(cast(BillInfo.amount as int) ) as slsp FROM Bill, BillInfo where Bill.billId = BillInfo.billId AND MONTH(Bill.billDate) = '" + CurrentMonth + "' group by CAST(Bill.billDate AS DATE)");
+            return DataProvider.Instance.ExecuteQuery("SELECT CAST(Bill.billDate AS DATE) AS Ngay, sum(cast(BillInfo.amount as int) ) as slsp FROM Bill, BillInfo where Bill.billId = BillInfo.billId AND MONTH(Bill.billDate) = '" + mouth + "' group by CAST(Bill.billDate AS DATE) having year(CAST(Bill.billDate AS DATE)) = year(getdate())");
         }
         public DataTable SearchBill(string search)
         {
@@ -138,6 +136,43 @@ namespace QuanLyBanHang.DAO
         {
             return DataProvider.Instance.ExecuteQuery("USP_SearchBillByDay @seacrh", new object[] { search });
         }
-        
+
+        public int StatisticalBillFromTo(string from, string to)
+        {
+            try
+            {
+                return (int)DataProvider.Instance.ExecuteScalar("SELECT count(billDate) as HDtimene from Bill where billDate BETWEEN '" + from + "' AND '" + to + "'");
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public int StatisticalProductFromTo(string from, string to)
+        {
+            try
+            {
+                return (int)DataProvider.Instance.ExecuteScalar("select sum(BillInfo.amount) from Bill, BillInfo Where Bill.billId = BillInfo.billId and billDate BETWEEN '" + from + "' AND '" + to + "'");
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public double StatisticalMoneyFromTo(string from, string to)
+        {
+            try
+            {
+                return (double)DataProvider.Instance.ExecuteScalar("select sum(moneyPay) from UV_SumMoney where dayPay BETWEEN '" + from + "' AND '" + to + "'");
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+
     }
 }

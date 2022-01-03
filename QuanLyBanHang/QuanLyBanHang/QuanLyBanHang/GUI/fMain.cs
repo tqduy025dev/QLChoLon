@@ -1,20 +1,13 @@
 ﻿using QuanLyBanHang.DTO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyBanHang
 {
     public partial class fMain : Form
     {
-        private Account loginAccount;
-
+        public static Account loginAccount;
+        public static int accountType;
         public Account LoginAccount
         {
             get { return loginAccount; }
@@ -23,6 +16,7 @@ namespace QuanLyBanHang
         public fMain(Account account)
         {
             this.LoginAccount = account;
+            accountType = account.AccountType;
             InitializeComponent();
             txtUserName.Text = LoginAccount.UserName;
         }
@@ -100,7 +94,7 @@ namespace QuanLyBanHang
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            if ((loginAccount.AccountType == 0) || (loginAccount.AccountType == 3))
+            if ((loginAccount.AccountType == 0) || (loginAccount.AccountType == 3) || (loginAccount.AccountType == 1))
             {
                 LoadSidePanel(btnProducts);
                 userProducts1.BringToFront();
@@ -157,14 +151,33 @@ namespace QuanLyBanHang
             txtTime.Text = DateTime.Now.ToLongTimeString();
         }
 
-        private void button14_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Bạn muốn hỏi gì nào ?", "Question ?", MessageBoxButtons.OK, MessageBoxIcon.Question);
-        }
-
         private void btnCollapse_Click(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Minimized;
+        }
 
+        private void btnClient_Click(object sender, EventArgs e)
+        {
+            LoadSidePanel(btnClient);
+            userClient1.BringToFront();
+        }
+
+        // thu gọn app vào khay icon ở cạnh nút wifi -- notify tạo icon ẩn hiện 
+        private void fMain_Resize(object sender, EventArgs e)
+        {
+            //if (FormWindowState.Minimized == this.WindowState)
+            //{
+            //    this.Hide();
+            //    notifyIcon1.Visible = true;
+            //}
+        }
+
+        // toolbox notify 
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //Show();
+            //this.WindowState = FormWindowState.Normal;
+            //notifyIcon1.Visible = false;
         }
     }
 }

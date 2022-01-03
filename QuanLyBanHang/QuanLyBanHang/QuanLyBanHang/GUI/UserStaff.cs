@@ -1,12 +1,5 @@
 ﻿using QuanLyBanHang.DAO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyBanHang.BUS
@@ -95,59 +88,75 @@ namespace QuanLyBanHang.BUS
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtStaffId.Text);
-            string staffName = txtStaffName.Text;
-            DateTime dateOfBirth = dtpDateOfBirth.Value;
-            string address = txtAddress.Text;
-            string phoneNumber = txtPhoneNumber.Text;
-            bool gender;
-            if (rdMale.Checked == true)
+
+            try
             {
-                gender = true;
+                int id = int.Parse(txtStaffId.Text);
+                string staffName = txtStaffName.Text;
+                DateTime dateOfBirth = dtpDateOfBirth.Value;
+                string address = txtAddress.Text;
+                string phoneNumber = txtPhoneNumber.Text;
+                bool gender;
+                if (rdMale.Checked == true)
+                {
+                    gender = true;
+                }
+                else
+                {
+                    gender = false;
+                }
+                if (txtStaffId.Text.Trim().Length < 1)
+                {
+                    MessageBox.Show("Vui lòng chọn nhân viên cần sửa !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtStaffName.Text.Trim().Length < 1)
+                {
+                    MessageBox.Show("Vui lòng nhập Họ Tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (dtpDateOfBirth.Value > DateTime.Now)
+                {
+                    MessageBox.Show("Ngày sinh không được quá ngày hiện tại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtAddress.Text.Trim().Length < 1)
+                {
+                    MessageBox.Show("Vui lòng nhập địa chỉ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtPhoneNumber.Text.Trim().Length != 10)
+                {
+                    MessageBox.Show("SĐT phải đủ 10 chữ số !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    UpdateStaff(id, staffName, dateOfBirth, address, phoneNumber, gender);
+                }
+                LoadStaff();
             }
-            else
+            catch (Exception)
             {
-                gender = false;
             }
-            if(txtStaffId.Text.Trim().Length < 1)
-            {
-                MessageBox.Show("Vui lòng chọn nhân viên cần sửa !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (txtStaffName.Text.Trim().Length < 1)
-            {
-                MessageBox.Show("Vui lòng nhập Họ Tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (dtpDateOfBirth.Value > DateTime.Now)
-            {
-                MessageBox.Show("Ngày sinh không được quá ngày hiện tại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (txtAddress.Text.Trim().Length < 1)
-            {
-                MessageBox.Show("Vui lòng nhập địa chỉ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (txtPhoneNumber.Text.Trim().Length != 10)
-            {
-                MessageBox.Show("SĐT phải đủ 10 chữ số !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                UpdateStaff(id, staffName, dateOfBirth, address, phoneNumber, gender);
-            }
-            LoadStaff();
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtStaffId.Text);
-            if(txtStaffId.Text.Trim().Length < 1)
+            try
             {
-                MessageBox.Show("Vui lòng chọn nhân viên cần sửa !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                int id = int.Parse(txtStaffId.Text);
+                if (txtStaffId.Text.Trim().Length < 1)
+                {
+                    MessageBox.Show("Vui lòng chọn nhân viên cần xoá !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    DeleteStaff(id);
+                }
+                LoadStaff();
             }
-            else
+            catch (Exception)
             {
-                DeleteStaff(id);
+                MessageBox.Show("Vui lòng chọn nhân viên cần xoá !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LoadStaff();
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

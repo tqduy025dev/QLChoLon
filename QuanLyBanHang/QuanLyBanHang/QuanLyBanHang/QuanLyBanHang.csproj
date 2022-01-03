@@ -84,6 +84,12 @@
     <Compile Include="GUI\fPayment.Designer.cs">
       <DependentUpon>fPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\UserClient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UserClient.Designer.cs">
+      <DependentUpon>UserClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\UserStaff.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\fPayment.resx">
       <DependentUpon>fPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserClient.resx">
+      <DependentUpon>UserClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserStaff.resx">
       <DependentUpon>UserStaff.cs</DependentUpon>

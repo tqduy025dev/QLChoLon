@@ -1,28 +1,32 @@
 ﻿using QuanLyBanHang.DAO;
 using QuanLyBanHang.DTO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyBanHang
 {
     public partial class UserProducts : UserControl
     {
-        BindingSource productList = new BindingSource();
+        private  BindingSource productList = new BindingSource();
         public UserProducts()
         {
             InitializeComponent();
             dtgvProduct.DataSource = productList;
-
             LoadProduct();
             LoadCbbProductType();
             AddFoodBinding();
+            checkPermision();
+            
+        }
+
+        void checkPermision()
+        {
+            if (fMain.accountType == 1)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnUpdate.Enabled = false;
+            }
         }
 
         void LoadProduct()
@@ -44,39 +48,51 @@ namespace QuanLyBanHang
 
         private void btnRefesh_Click(object sender, EventArgs e)
         {
+            LoadProduct();
+            LoadCbbProductType();
+
             txtProductId.Text = "";
             txtProductName.Text = "";
             txtPrice.Text = "";
             nmudProductAmount.Value = 0;
 
-            LoadCbbProductType();
+            
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string productName = txtProductName.Text;
-            int productTypeId = (cbbProductType.SelectedItem as ProductType).ProductTypeId;
-            float productPrice = (float)Convert.ToDouble(txtPrice.Text);
-            int productAmount = (int)nmudProductAmount.Value;
-            if(txtProductId.Text.Trim().Length > 0)
+
+            try
             {
-                MessageBox.Show("Vui lòng refesh để thực hiện chức năng này !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string productName = txtProductName.Text;
+                int productTypeId = (cbbProductType.SelectedItem as ProductType).ProductTypeId;
+                float productPrice = (float)Convert.ToDouble(txtPrice.Text);
+                int productAmount = (int)nmudProductAmount.Value;
+                if (txtProductId.Text.Trim().Length > 0)
+                {
+                    MessageBox.Show("Vui lòng refesh để thực hiện chức năng này !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtProductName.Text.Trim().Length < 1)
+                {
+                    MessageBox.Show("Vui lòng nhập tên sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (txtPrice.Text.Trim().Length < 1)
+                {
+                    MessageBox.Show("Vui lòng nhập giá sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (nmudProductAmount.Value == 0)
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    InsertProduct(productName, productTypeId, productPrice, productAmount);
+                }
             }
-            else if(txtProductName.Text.Trim().Length < 1)
+            catch (Exception)
             {
-                MessageBox.Show("Vui lòng nhập tên sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng không để trống sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (txtPrice.Text.Trim().Length < 1)
-            {
-                MessageBox.Show("Vui lòng nhập giá sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (nmudProductAmount.Value == 0)
-            {
-                MessageBox.Show("Vui lòng nhập số lượng sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                InsertProduct(productName, productTypeId, productPrice, productAmount);
-            }
+            
         }
 
         void InsertProduct(string productName, int productTypeId, float productPrice, int productAmount)

@@ -3,12 +3,6 @@ using QuanLyBanHang.DAO;
 using QuanLyBanHang.DTO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyBanHang
@@ -25,7 +19,12 @@ namespace QuanLyBanHang
         {
             InitializeComponent();
             LoadCbbProductType();
+            
         }
+
+       
+
+
         void LoadCbbProductType()
         {
             List<ProductType> listProductType = ProductTypeDAO.Instance.GetListProductType();
@@ -104,8 +103,6 @@ namespace QuanLyBanHang
             }
             txtSumPrice.Text = sum.ToString("###,###");
 
-
-
             //---------------Refesh lại amount -----------------------//
             nmudAmout.Value = 1;
 
@@ -149,6 +146,9 @@ namespace QuanLyBanHang
             else if (txtClinetPhone.Text.Trim().Length != 10)
             {
                 MessageBox.Show("SĐT Phải 10 chữ số !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else if (clientName.Trim().Length == 0 || address.Trim().Length == 0)
+            {
+                MessageBox.Show("Không được để trống tên, địa chỉ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if(client !=  null)
             {

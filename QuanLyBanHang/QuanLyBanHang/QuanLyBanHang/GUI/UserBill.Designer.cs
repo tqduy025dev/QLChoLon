@@ -58,8 +58,9 @@ namespace QuanLyBanHang
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(743, 78);
+            this.panel1.Size = new System.Drawing.Size(991, 96);
             this.panel1.TabIndex = 0;
             // 
             // btnPrintToExcel
@@ -70,10 +71,11 @@ namespace QuanLyBanHang
             this.btnPrintToExcel.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnPrintToExcel.ForeColor = System.Drawing.Color.White;
             this.btnPrintToExcel.HoverState.Parent = this.btnPrintToExcel;
-            this.btnPrintToExcel.Location = new System.Drawing.Point(463, 47);
+            this.btnPrintToExcel.Location = new System.Drawing.Point(617, 58);
+            this.btnPrintToExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintToExcel.Name = "btnPrintToExcel";
             this.btnPrintToExcel.ShadowDecoration.Parent = this.btnPrintToExcel;
-            this.btnPrintToExcel.Size = new System.Drawing.Size(81, 21);
+            this.btnPrintToExcel.Size = new System.Drawing.Size(108, 26);
             this.btnPrintToExcel.TabIndex = 22;
             this.btnPrintToExcel.Text = "Print To Excel";
             this.btnPrintToExcel.Click += new System.EventHandler(this.btnPrintToExcel_Click);
@@ -86,10 +88,11 @@ namespace QuanLyBanHang
             this.btnRefesh.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnRefesh.ForeColor = System.Drawing.Color.White;
             this.btnRefesh.HoverState.Parent = this.btnRefesh;
-            this.btnRefesh.Location = new System.Drawing.Point(310, 47);
+            this.btnRefesh.Location = new System.Drawing.Point(413, 58);
+            this.btnRefesh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefesh.Name = "btnRefesh";
             this.btnRefesh.ShadowDecoration.Parent = this.btnRefesh;
-            this.btnRefesh.Size = new System.Drawing.Size(60, 21);
+            this.btnRefesh.Size = new System.Drawing.Size(80, 26);
             this.btnRefesh.TabIndex = 21;
             this.btnRefesh.Text = "Refesh";
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
@@ -98,18 +101,20 @@ namespace QuanLyBanHang
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(578, 16);
+            this.label1.Location = new System.Drawing.Point(771, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 16);
+            this.label1.Size = new System.Drawing.Size(186, 19);
             this.label1.TabIndex = 20;
             this.label1.Text = "Search: Date Of Purchase";
             // 
             // dtpSearch
             // 
             this.dtpSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSearch.Location = new System.Drawing.Point(626, 47);
+            this.dtpSearch.Location = new System.Drawing.Point(835, 58);
+            this.dtpSearch.Margin = new System.Windows.Forms.Padding(4);
             this.dtpSearch.Name = "dtpSearch";
-            this.dtpSearch.Size = new System.Drawing.Size(100, 21);
+            this.dtpSearch.Size = new System.Drawing.Size(132, 24);
             this.dtpSearch.TabIndex = 19;
             this.dtpSearch.ValueChanged += new System.EventHandler(this.dtpSearch_ValueChanged);
             // 
@@ -121,10 +126,11 @@ namespace QuanLyBanHang
             this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.HoverState.Parent = this.btnSearch;
-            this.btnSearch.Location = new System.Drawing.Point(155, 47);
+            this.btnSearch.Location = new System.Drawing.Point(207, 58);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.ShadowDecoration.Parent = this.btnSearch;
-            this.btnSearch.Size = new System.Drawing.Size(60, 21);
+            this.btnSearch.Size = new System.Drawing.Size(80, 26);
             this.btnSearch.TabIndex = 18;
             this.btnSearch.Text = "Search";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -133,26 +139,29 @@ namespace QuanLyBanHang
             // 
             this.labelSearch.AutoSize = true;
             this.labelSearch.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSearch.Location = new System.Drawing.Point(19, 16);
+            this.labelSearch.Location = new System.Drawing.Point(25, 20);
+            this.labelSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSearch.Name = "labelSearch";
-            this.labelSearch.Size = new System.Drawing.Size(196, 16);
+            this.labelSearch.Size = new System.Drawing.Size(250, 19);
             this.labelSearch.TabIndex = 4;
             this.labelSearch.Text = "Search: ID Bill, Client PhoneNumber";
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(22, 47);
+            this.txtSearch.Location = new System.Drawing.Point(29, 58);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(117, 21);
+            this.txtSearch.Size = new System.Drawing.Size(155, 24);
             this.txtSearch.TabIndex = 3;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dtgrBill);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 84);
+            this.panel2.Location = new System.Drawing.Point(0, 103);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(743, 349);
+            this.panel2.Size = new System.Drawing.Size(991, 430);
             this.panel2.TabIndex = 1;
             // 
             // dtgrBill
@@ -163,10 +172,12 @@ namespace QuanLyBanHang
             this.dtgrBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgrBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgrBill.Location = new System.Drawing.Point(0, 0);
+            this.dtgrBill.Margin = new System.Windows.Forms.Padding(4);
             this.dtgrBill.Name = "dtgrBill";
             this.dtgrBill.ReadOnly = true;
+            this.dtgrBill.RowHeadersWidth = 51;
             this.dtgrBill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgrBill.Size = new System.Drawing.Size(743, 349);
+            this.dtgrBill.Size = new System.Drawing.Size(991, 430);
             this.dtgrBill.TabIndex = 0;
             this.dtgrBill.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgrBill_CellContentDoubleClick);
             // 
@@ -176,12 +187,13 @@ namespace QuanLyBanHang
             // 
             // UserBill
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserBill";
-            this.Size = new System.Drawing.Size(743, 433);
+            this.Size = new System.Drawing.Size(991, 533);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

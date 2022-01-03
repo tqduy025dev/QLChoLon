@@ -30,7 +30,7 @@ namespace QuanLyBanHang.DAO
         }
         public bool UpdateClient(string phoneNumber, string clientName, string address)
         {
-            string query = string.Format("Update Client set clientName = '{1}' , address = '{2}' where phoneNumber = '{0}' ", phoneNumber, clientName, address);
+            string query = string.Format("Update Client set clientName = N'{1}' , address = N'{2}' where phoneNumber = '{0}' ", phoneNumber, clientName, address);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
@@ -40,6 +40,37 @@ namespace QuanLyBanHang.DAO
             string query = string.Format("Update Client set accumulated = accumulated + {1}  where phoneNumber = '{0}' ", phoneNumber, accumulated);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
+        }
+
+
+        public DataTable GetListClient()
+        {
+            return DataProvider.Instance.ExecuteQuery("USP_ListClient");
+        }
+
+        public List<Client> searchListClientByPhone(string phoneNumber, string clientName)
+        {
+            List<Client> mClient = new List<Client>();
+
+            string query = string.Format("Select * from Client where phoneNumber LIKE '%" + phoneNumber + "%' or clientName LIKE '%" + clientName +"%'");
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            if (data.Rows.Count > 0)
+            {
+                
+                foreach (DataRow row in data.Rows)
+                {
+                    Client client = new Client();
+                    client.PhoneNumber = row["phoneNumber"].ToString();
+                    client.ClientName = row["clientName"].ToString();
+                    client.Address = row["address"].ToString();
+                    client.Accumulated = (int)row["accumulated"];
+                    mClient.Add(client);
+                }
+                return mClient;
+            }
+
+            return mClient;
         }
 
         public Client SearchClientByPhone(string phoneNumber)
