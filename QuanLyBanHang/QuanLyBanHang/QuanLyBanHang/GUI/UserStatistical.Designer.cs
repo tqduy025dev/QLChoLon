@@ -30,15 +30,15 @@ namespace QuanLyBanHang
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserStatistical));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbBilltoday = new System.Windows.Forms.Label();
@@ -79,6 +79,7 @@ namespace QuanLyBanHang
             this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
             this.btnSearchTime = new Guna.UI2.WinForms.Guna2Button();
             this.btnDefautMonth = new Guna.UI2.WinForms.Guna2Button();
+            this.CmbYear = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -399,56 +400,56 @@ namespace QuanLyBanHang
             // 
             // chartProduct
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chartProduct.ChartAreas.Add(chartArea7);
+            chartArea10.Name = "ChartArea1";
+            this.chartProduct.ChartAreas.Add(chartArea10);
             this.chartProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend7.Name = "Legend1";
-            this.chartProduct.Legends.Add(legend7);
+            legend10.Name = "Legend1";
+            this.chartProduct.Legends.Add(legend10);
             this.chartProduct.Location = new System.Drawing.Point(0, 0);
             this.chartProduct.Margin = new System.Windows.Forms.Padding(4);
             this.chartProduct.Name = "chartProduct";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chartProduct.Series.Add(series7);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chartProduct.Series.Add(series10);
             this.chartProduct.Size = new System.Drawing.Size(627, 277);
             this.chartProduct.TabIndex = 2;
             this.chartProduct.Text = "chart1";
             // 
             // chartMoney
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chartMoney.ChartAreas.Add(chartArea8);
+            chartArea11.Name = "ChartArea1";
+            this.chartMoney.ChartAreas.Add(chartArea11);
             this.chartMoney.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend8.Name = "Legend1";
-            this.chartMoney.Legends.Add(legend8);
+            legend11.Name = "Legend1";
+            this.chartMoney.Legends.Add(legend11);
             this.chartMoney.Location = new System.Drawing.Point(0, 0);
             this.chartMoney.Margin = new System.Windows.Forms.Padding(4);
             this.chartMoney.Name = "chartMoney";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chartMoney.Series.Add(series8);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Legend = "Legend1";
+            series11.Name = "Series1";
+            this.chartMoney.Series.Add(series11);
             this.chartMoney.Size = new System.Drawing.Size(627, 277);
             this.chartMoney.TabIndex = 1;
             this.chartMoney.Text = "chart1";
             // 
             // chartAlmostProduct
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chartAlmostProduct.ChartAreas.Add(chartArea9);
+            chartArea12.Name = "ChartArea1";
+            this.chartAlmostProduct.ChartAreas.Add(chartArea12);
             this.chartAlmostProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend9.Name = "Legend1";
-            this.chartAlmostProduct.Legends.Add(legend9);
+            legend12.Name = "Legend1";
+            this.chartAlmostProduct.Legends.Add(legend12);
             this.chartAlmostProduct.Location = new System.Drawing.Point(0, 0);
             this.chartAlmostProduct.Margin = new System.Windows.Forms.Padding(4);
             this.chartAlmostProduct.Name = "chartAlmostProduct";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chartAlmostProduct.Series.Add(series9);
+            series12.ChartArea = "ChartArea1";
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.chartAlmostProduct.Series.Add(series12);
             this.chartAlmostProduct.Size = new System.Drawing.Size(627, 277);
             this.chartAlmostProduct.TabIndex = 3;
             this.chartAlmostProduct.Text = "chart1";
@@ -456,6 +457,7 @@ namespace QuanLyBanHang
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel8.Controls.Add(this.CmbYear);
             this.panel8.Controls.Add(this.CmbMonth);
             this.panel8.Controls.Add(this.label7);
             this.panel8.Controls.Add(this.btnProductAlmostOfStock);
@@ -472,7 +474,7 @@ namespace QuanLyBanHang
             this.CmbMonth.FormattingEnabled = true;
             this.CmbMonth.Location = new System.Drawing.Point(158, 23);
             this.CmbMonth.Name = "CmbMonth";
-            this.CmbMonth.Size = new System.Drawing.Size(66, 24);
+            this.CmbMonth.Size = new System.Drawing.Size(55, 24);
             this.CmbMonth.TabIndex = 22;
             this.CmbMonth.SelectedValueChanged += new System.EventHandler(this.CmbMonth_SelectedValueChanged);
             // 
@@ -616,6 +618,15 @@ namespace QuanLyBanHang
             this.btnDefautMonth.Text = "Defaut";
             this.btnDefautMonth.Click += new System.EventHandler(this.btnDefautMonth_Click);
             // 
+            // CmbYear
+            // 
+            this.CmbYear.FormattingEnabled = true;
+            this.CmbYear.Location = new System.Drawing.Point(219, 23);
+            this.CmbYear.Name = "CmbYear";
+            this.CmbYear.Size = new System.Drawing.Size(66, 24);
+            this.CmbYear.TabIndex = 23;
+            this.CmbYear.SelectedValueChanged += new System.EventHandler(this.CmbYear_SelectedValueChanged);
+            // 
             // UserStatistical
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -705,5 +716,6 @@ namespace QuanLyBanHang
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CmbMonth;
         private Guna.UI2.WinForms.Guna2Button btnDefautMonth;
+        private System.Windows.Forms.ComboBox CmbYear;
     }
 }

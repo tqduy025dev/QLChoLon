@@ -49,6 +49,12 @@ namespace QuanLyBanHang
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnExit = new Guna.UI2.WinForms.Guna2CustomRadioButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.txtUserName = new System.Windows.Forms.Label();
+            this.txtTime = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnCollapse = new Guna.UI2.WinForms.Guna2CustomRadioButton();
             this.userHome1 = new QuanLyBanHang.UserHome();
             this.userBill1 = new QuanLyBanHang.UserBill();
             this.userAccount1 = new QuanLyBanHang.UserAccount();
@@ -57,12 +63,6 @@ namespace QuanLyBanHang
             this.userClient1 = new QuanLyBanHang.GUI.UserClient();
             this.userShopping1 = new QuanLyBanHang.UserShopping();
             this.userProducts1 = new QuanLyBanHang.UserProducts();
-            this.btnExit = new Guna.UI2.WinForms.Guna2CustomRadioButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.txtUserName = new System.Windows.Forms.Label();
-            this.txtTime = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnCollapse = new Guna.UI2.WinForms.Guna2CustomRadioButton();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -353,69 +353,6 @@ namespace QuanLyBanHang
             this.panel5.Size = new System.Drawing.Size(991, 533);
             this.panel5.TabIndex = 9;
             // 
-            // userHome1
-            // 
-            this.userHome1.Location = new System.Drawing.Point(0, 0);
-            this.userHome1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.userHome1.Name = "userHome1";
-            this.userHome1.Size = new System.Drawing.Size(991, 531);
-            this.userHome1.TabIndex = 3;
-            // 
-            // userBill1
-            // 
-            this.userBill1.Location = new System.Drawing.Point(0, -2);
-            this.userBill1.Margin = new System.Windows.Forms.Padding(4);
-            this.userBill1.Name = "userBill1";
-            this.userBill1.Size = new System.Drawing.Size(991, 533);
-            this.userBill1.TabIndex = 2;
-            // 
-            // userAccount1
-            // 
-            this.userAccount1.Location = new System.Drawing.Point(0, -3);
-            this.userAccount1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.userAccount1.Name = "userAccount1";
-            this.userAccount1.Size = new System.Drawing.Size(991, 533);
-            this.userAccount1.TabIndex = 1;
-            // 
-            // userStaff1
-            // 
-            this.userStaff1.Location = new System.Drawing.Point(0, -1);
-            this.userStaff1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.userStaff1.Name = "userStaff1";
-            this.userStaff1.Size = new System.Drawing.Size(991, 533);
-            this.userStaff1.TabIndex = 0;
-            // 
-            // userStatistical1
-            // 
-            this.userStatistical1.Location = new System.Drawing.Point(0, 0);
-            this.userStatistical1.Margin = new System.Windows.Forms.Padding(4);
-            this.userStatistical1.Name = "userStatistical1";
-            this.userStatistical1.Size = new System.Drawing.Size(991, 533);
-            this.userStatistical1.TabIndex = 6;
-            // 
-            // userClient1
-            // 
-            this.userClient1.Location = new System.Drawing.Point(0, 0);
-            this.userClient1.Name = "userClient1";
-            this.userClient1.Size = new System.Drawing.Size(991, 533);
-            this.userClient1.TabIndex = 7;
-            // 
-            // userShopping1
-            // 
-            this.userShopping1.Location = new System.Drawing.Point(0, 0);
-            this.userShopping1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.userShopping1.Name = "userShopping1";
-            this.userShopping1.Size = new System.Drawing.Size(991, 533);
-            this.userShopping1.TabIndex = 5;
-            // 
-            // userProducts1
-            // 
-            this.userProducts1.Location = new System.Drawing.Point(0, -2);
-            this.userProducts1.Margin = new System.Windows.Forms.Padding(4);
-            this.userProducts1.Name = "userProducts1";
-            this.userProducts1.Size = new System.Drawing.Size(991, 533);
-            this.userProducts1.TabIndex = 4;
-            // 
             // btnExit
             // 
             this.btnExit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExit.BackgroundImage")));
@@ -500,6 +437,69 @@ namespace QuanLyBanHang
             this.btnCollapse.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.btnCollapse.UncheckedState.Parent = this.btnCollapse;
             this.btnCollapse.Click += new System.EventHandler(this.btnCollapse_Click);
+            // 
+            // userHome1
+            // 
+            this.userHome1.Location = new System.Drawing.Point(0, 0);
+            this.userHome1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userHome1.Name = "userHome1";
+            this.userHome1.Size = new System.Drawing.Size(991, 531);
+            this.userHome1.TabIndex = 3;
+            // 
+            // userBill1
+            // 
+            this.userBill1.Location = new System.Drawing.Point(0, -2);
+            this.userBill1.Margin = new System.Windows.Forms.Padding(4);
+            this.userBill1.Name = "userBill1";
+            this.userBill1.Size = new System.Drawing.Size(991, 533);
+            this.userBill1.TabIndex = 2;
+            // 
+            // userAccount1
+            // 
+            this.userAccount1.Location = new System.Drawing.Point(0, -3);
+            this.userAccount1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userAccount1.Name = "userAccount1";
+            this.userAccount1.Size = new System.Drawing.Size(991, 533);
+            this.userAccount1.TabIndex = 1;
+            // 
+            // userStaff1
+            // 
+            this.userStaff1.Location = new System.Drawing.Point(0, -1);
+            this.userStaff1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userStaff1.Name = "userStaff1";
+            this.userStaff1.Size = new System.Drawing.Size(991, 533);
+            this.userStaff1.TabIndex = 0;
+            // 
+            // userStatistical1
+            // 
+            this.userStatistical1.Location = new System.Drawing.Point(0, 0);
+            this.userStatistical1.Margin = new System.Windows.Forms.Padding(4);
+            this.userStatistical1.Name = "userStatistical1";
+            this.userStatistical1.Size = new System.Drawing.Size(991, 533);
+            this.userStatistical1.TabIndex = 6;
+            // 
+            // userClient1
+            // 
+            this.userClient1.Location = new System.Drawing.Point(0, 0);
+            this.userClient1.Name = "userClient1";
+            this.userClient1.Size = new System.Drawing.Size(991, 533);
+            this.userClient1.TabIndex = 7;
+            // 
+            // userShopping1
+            // 
+            this.userShopping1.Location = new System.Drawing.Point(0, 0);
+            this.userShopping1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userShopping1.Name = "userShopping1";
+            this.userShopping1.Size = new System.Drawing.Size(991, 533);
+            this.userShopping1.TabIndex = 5;
+            // 
+            // userProducts1
+            // 
+            this.userProducts1.Location = new System.Drawing.Point(0, -2);
+            this.userProducts1.Margin = new System.Windows.Forms.Padding(4);
+            this.userProducts1.Name = "userProducts1";
+            this.userProducts1.Size = new System.Drawing.Size(991, 533);
+            this.userProducts1.TabIndex = 4;
             // 
             // fMain
             // 

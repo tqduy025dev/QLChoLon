@@ -521,17 +521,18 @@ select CAST(B.billDate AS DATE) as dayPay,
 go
 
 create proc USP_SumMoneyInDay
-@dayPay nvarchar(10)
+@dayPay nvarchar(10), @yearPay nvarchar(10)
 as
 begin
 	select CAST(dayPay AS DATE) as Ngay, sum(moneyPay) AS tien
 	from UV_SumMoney
 	where MONTH(dayPay) = @dayPay
 	group by CAST(dayPay AS DATE) 
-	having year(CAST(dayPay AS DATE)) = year(getdate())
+	having year(CAST(dayPay AS DATE)) = year(@yearPay)
 	ORDER by CAST(dayPay AS DATE)
 end
 go
+
 
 
 -- Hiển Thị Bill

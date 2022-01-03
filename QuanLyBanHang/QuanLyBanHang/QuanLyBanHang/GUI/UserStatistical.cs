@@ -17,23 +17,34 @@ namespace QuanLyBanHang
         {
             InitializeComponent();
             LoadStatisticals();
-            Fill_CmbMonth();
+            Fill_CmbMonthAndYear();
             chartAlmostProduct.Hide();
             chartProduct.Hide();
             chartMoney.Show();
-            LoadChartMoney();
+
+            if (BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString()), int.Parse(CmbYear.Text.ToString())).Rows.Count > 1)
+            {
+                LoadChartMoney();
+            }
+            
             
 
         }
 
-        private void Fill_CmbMonth()
+        private void Fill_CmbMonthAndYear()
         {
             CmbMonth.Text = DateTime.Now.Month.ToString();
             for (int i = 1; i <= 12; i++)
                 {
                     CmbMonth.Items.Add(i);
                 }
-            
+
+            CmbYear.Text = DateTime.Now.Year.ToString();
+            int numYear = int.Parse(CmbYear.Text);
+            for (int i = 2010; i<= numYear; i++)
+            {
+                CmbYear.Items.Add(i);
+            }
         }
 
         
@@ -84,22 +95,31 @@ namespace QuanLyBanHang
 
         void LoadChartMoney()
         {
-            chartMoney.Series["Series1"].XValueType = ChartValueType.DateTime;
-
-            chartMoney.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM";
+            
 
             chartProduct.Enabled = false;
             chartMoney.Enabled = true;
 
-            if (BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString())).Rows.Count < 1)
+            if (BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString()), int.Parse(CmbYear.Text.ToString())).Rows.Count < 1)
             {
-                MessageBox.Show("Không có dữ liệu cho tháng " + CmbMonth.Text.ToString(), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                CmbMonth.Text = DateTime.Now.Month.ToString();
+                //CmbMonth.Text = DateTime.Now.Month.ToString();
+
+                foreach (var series in chartMoney.Series)
+                {
+                    series.Points.Clear();
+                }
+
+                MessageBox.Show("No data for the month " + CmbMonth.Text.ToString(), "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
-                chartMoney.DataSource = BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString()));
+                chartMoney.DataSource = BillDAO.Instance.SumPayMoneyByDay(int.Parse(CmbMonth.Text.ToString()), int.Parse(CmbYear.Text.ToString()));
             }
+
+            chartMoney.Series["Series1"].XValueType = ChartValueType.DateTime;
+
+            chartMoney.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM";
 
             //set the member of the chart data source used to data bind to the X-values of the series  
             chartMoney.Series["Series1"].XValueMember = "Ngay";
@@ -109,23 +129,34 @@ namespace QuanLyBanHang
         }
         void LoadChartProduct()
         {
-            chartProduct.Series["Series1"].XValueType = ChartValueType.DateTime;
-            chartProduct.Series["Series1"].YValueType = ChartValueType.Int32;
-            chartProduct.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM";
+            
+
+           
 
             chartProduct.Enabled = true;
             chartMoney.Enabled = false;
 
-            if (BillDAO.Instance.TotalPayProductByDay(int.Parse(CmbMonth.Text.ToString())).Rows.Count < 1)
+            if (BillDAO.Instance.TotalPayProductByDay(int.Parse(CmbMonth.Text.ToString()), int.Parse(CmbYear.Text.ToString())).Rows.Count < 1)
             {
-                MessageBox.Show("Không có dữ liệu cho tháng " + CmbMonth.Text.ToString(), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                CmbMonth.Text = DateTime.Now.Month.ToString();
+                //CmbMonth.Text = DateTime.Now.Month.ToString();
+
+                foreach (var series in chartProduct.Series)
+                {
+                    series.Points.Clear();
+                }
+
+                MessageBox.Show("No data for the month " + CmbMonth.Text.ToString(), "Notify", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
-                chartProduct.DataSource = BillDAO.Instance.TotalPayProductByDay(int.Parse(CmbMonth.Text.ToString()));
+                chartProduct.DataSource = BillDAO.Instance.TotalPayProductByDay(int.Parse(CmbMonth.Text.ToString()), int.Parse(CmbYear.Text.ToString()));
             }
-            
+
+            chartProduct.Series["Series1"].XValueType = ChartValueType.DateTime;
+            chartProduct.Series["Series1"].YValueType = ChartValueType.Int32;
+            chartProduct.ChartAreas[0].AxisX.LabelStyle.Format = "dd-MM";
+
             //set the member of the chart data source used to data bind to the X-values of the series  
             chartProduct.Series["Series1"].XValueMember = "Ngay";
             //set the member columns of the chart data source used to data bind to the X-values of the series  
@@ -236,7 +267,18 @@ namespace QuanLyBanHang
             lbSumBill.Text = BillDAO.Instance.SumBillMonth().ToString();
             lbSumProduct.Text = BillDAO.Instance.SumPayProductMonth().ToString();
             lbSumMoney.Text = BillDAO.Instance.SumMoneyMonth().ToString("###,###");
-            CmbMonth.Text = DateTime.Now.Month.ToString();
+        }
+
+        private void CmbYear_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (chartMoney.Enabled)
+            {
+                LoadChartMoney();
+            }
+            else
+            {
+                LoadChartProduct();
+            }
         }
     }
 }

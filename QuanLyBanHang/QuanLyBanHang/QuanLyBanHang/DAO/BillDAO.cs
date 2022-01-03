@@ -120,13 +120,13 @@ namespace QuanLyBanHang.DAO
                 return 0;
             }
         }
-        public DataTable SumPayMoneyByDay(int mouth)
+        public DataTable SumPayMoneyByDay(int mouth, int year)
         {
-            return DataProvider.Instance.ExecuteQuery("USP_SumMoneyInDay @dayPa", new object[] { mouth });
+            return DataProvider.Instance.ExecuteQuery("USP_SumMoneyInDay @dayPay , @yearPay", new object[] { mouth, year });
         }
-        public DataTable TotalPayProductByDay(int mouth)
+        public DataTable TotalPayProductByDay(int mouth, int year)
         {
-            return DataProvider.Instance.ExecuteQuery("SELECT CAST(Bill.billDate AS DATE) AS Ngay, sum(cast(BillInfo.amount as int) ) as slsp FROM Bill, BillInfo where Bill.billId = BillInfo.billId AND MONTH(Bill.billDate) = '" + mouth + "' group by CAST(Bill.billDate AS DATE) having year(CAST(Bill.billDate AS DATE)) = year(getdate())");
+            return DataProvider.Instance.ExecuteQuery("SELECT CAST(Bill.billDate AS DATE) AS Ngay, sum(cast(BillInfo.amount as int) ) as slsp FROM Bill, BillInfo where Bill.billId = BillInfo.billId AND MONTH(Bill.billDate) = '" + mouth + "' group by CAST(Bill.billDate AS DATE) having year(CAST(Bill.billDate AS DATE)) = year('"+  year +"')");
         }
         public DataTable SearchBill(string search)
         {
